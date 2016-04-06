@@ -68,7 +68,7 @@ def netSalary(grossAnnualSalary,pensionPercent):
         return grossAnnualSalary,pensionPercent,pension,nationalInsurance(grossAnnualSalary),totalIncomeTax,taxableSalary-totalIncomeTax-nationalInsurance(grossAnnualSalary)
 '''Write the file out to Microsoft-Excel using the openpyxl library'''
 def write_results():
-    pens=0.05
+    pens=0.125
     wb=openpyxl.Workbook()
     sheet=wb.get_sheet_by_name('Sheet')
     sheet['A1']='Gross Salary'
@@ -79,7 +79,7 @@ def write_results():
     sheet['F1']='Net Salary'
     sheet['G1']='Monthly Net Salary'
     i=2
-    for sal in range(10000,200000,1000):
+    for sal in range(10000,100000,1000):
         aftertaxsalary=netSalary(sal,pens)
         #print aftertaxsalary[4]
         sheet['A'+str(i)] = aftertaxsalary[0]
@@ -90,7 +90,7 @@ def write_results():
         sheet['F'+str(i)] = aftertaxsalary[5]
         sheet['G'+str(i)] = aftertaxsalary[5]/12.0
         i+=1
-    wb.save('PAYE Analysis_5%Pension.xlsx')
+    wb.save('PAYE Analysis_100000_5%Pension.xlsx')
 write_results()
 
 
